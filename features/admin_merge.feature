@@ -11,24 +11,22 @@ Background:
      | Article | article1   | user1     | Merging Merge     				 |
      | Article | article2   | user2     | My article is cool         |
      | Article | article3   | user1     | These people are weird     |
-
+		And I follow "All Articles"
+		And I go to the edit page for "article1"
+		And I fill in "merge_with" with "2"
+		And I press "Merge"
+		And I follow "article1"
 Scenario: When articles are merged, the merged article should contain the text of both previous articles
-	When I follow "All Articles"
-	Then I should see "article1"
-	When I go to the edit page for "article1"
-	Then I should see "Merge Articles"
-	When I fill in "merge_with" with "2"
-	And I press "Merge"
-	Then I should see "Manage articles"
-	And I should see "article1"
-	When I follow "article1"
-	Then I should see "user1"
-	And I should see "Merging Merge"
+	Then I should see "Merging Merge"
 	And I should see "My article is cool"
-	And I should not see "user2"
+	
 
 Scenario: When articles are merged, the merged article should have one author 
+	Then I should see "user1"
+	And I should not see "user2"
 
 Scenario: Comments on each of the two original articles need to all carry over and point to the new, merged article
-
+	Then the comments for "article1" and "article2" should be merged
 Scenario: The title of the new article should be the title from either one of the merged articles
+	Then I should see "article1"
+	And I should not see "article2"
