@@ -4,4 +4,6 @@ Given /^the following articles exist/ do |article_table|
   end
 end
 
-
+Then /^the comments for '(.*)' and '(.*)' should be merged/ do |art1, art2|
+	Comments.find_by_article(art1).each do |mainComment|
+		Comments.find_by_article(art2).each do |	 
