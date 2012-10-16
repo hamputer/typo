@@ -1,8 +1,8 @@
 Feature: Merge two articles
 
-	As an Admin
-	So that I can relate similar articles
-	I want to be able to merge articles together
+	As a non-admin user
+	So that I do not destroy the blog
+	I should not be able to merge articles together
 
 Scenario: A non-admin cannot merge articles
 	Given the blog is set up

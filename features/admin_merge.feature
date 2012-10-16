@@ -15,7 +15,6 @@ Background:
 		And I go to the edit page for "article1"
 		And I fill in "merge_with" with "2"
 		And I press "Merge"
-		And I follow "article1"
 Scenario: When articles are merged, the merged article should contain the text of both previous articles
 	Then I should see "Merging Merge"
 	And I should see "My article is cool"
@@ -26,7 +25,8 @@ Scenario: When articles are merged, the merged article should have one author
 	And I should not see "user2"
 
 Scenario: Comments on each of the two original articles need to all carry over and point to the new, merged article
-	Then the comments for "article1" and "article2" should be merged
+	Then the comments for 1 and 2 should be merged
+
 Scenario: The title of the new article should be the title from either one of the merged articles
 	Then I should see "article1"
 	And I should not see "article2"

@@ -17,11 +17,8 @@ module NavigationHelpers
       '/'
     when /^the new article page$/
       '/admin/content/new'
-<<<<<<< HEAD
-=======
 		when /^the edit page for "(.*)"$/
 			%Q{/admin/content/edit/#{Article.find_by_title($1).id}}
->>>>>>> 2dcf86808c4bc14b997bc3a5a10ebcaa9369d978
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
