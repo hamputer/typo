@@ -5,12 +5,13 @@
 
 <% end %>
 
-<%if @article.id %>
+<%if @article.id and current_user.admin? %>
 	<%=form_tag("/admin/content/merge") do %>
 		<h4><%= _("Merge Articles") %></h4>
 		<label for = "merge_with" style = "width:auto; margin:0 4px 10px">Article ID</label>
-		<input type="text" name ="merge_with" style = "margin: 0 0 10px"/> <br>
-		<input type="hidden" name = "id" value = <%= @article.id %> />
+		<input type="text" name ="merge_with" " style = "margin: 0 0 10px"/> <br>
+		<input type="hidden" name = "id" value =<%= @article.id %> />
 		<%= submit_tag 'Merge' %>	
 	<% end %>
 <% end %>
+

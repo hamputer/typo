@@ -80,6 +80,20 @@ class Article < Content
     Article.exists?({:parent_id => self.id})
   end
 
+	def merge_with(id)
+		article2 = Article.find_by_id(id)
+		self.body += article2.body
+		
+		Comment.find_all_by_article_id(id).each do |comment|
+			comment.article_id = self.id
+			comment.save!
+		end
+		
+		article2.destroy
+		self.save
+		return self
+	end
+
   attr_accessor :draft, :keywords
 
   has_state(:state,
@@ -95,24 +109,6 @@ class Article < Content
   include Article::States
 
   class << self
-
-		def merge(id1, id2)
-			if !id1
-				id1 = self.guid	
-			end
-			if !Article.exists?(id2)
-				false
-			else
-				article2 = Article.find_by_id(id2)
-			end
-			article1 = Article.find_by_id(id1)
-			body = article1.body + article2.body
-			result = Article.create(:title=>article1.title, :author=> article1.author, :body => body, :published =>true)
-			Article.destroy(id1)
-			Article.destroy(id2)
-			return result
-		end
-
     def last_draft(article_id)
       article = Article.find(article_id)
       while article.has_child?
