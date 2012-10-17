@@ -21,8 +21,10 @@ Scenario: When articles are merged, the merged article should contain the text o
 	
 
 Scenario: When articles are merged, the merged article should have one author 
-	Then I should see "user1"
-	And I should not see "user2"
+	When I follow "All Articles"
+	Then I should see "article1"
+	And I should see "user1"
+	And I should not see "article2"
 
 Scenario: Comments on each of the two original articles need to all carry over and point to the new, merged article
 	Then the comments for 3 and 4 should be merged

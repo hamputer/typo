@@ -5,7 +5,7 @@ Given /^the following articles exist:/ do |article_table|
 end
 
 Then /^the comments for (.*) and (.*) should be merged/ do |id1, id2|
-	assert (Article.find_by_id(id1).comments & Article.find_by_id(id2).comments) == Article.find_by_id(id2).comments
+	assert (Comment.find_by_article_id(id1) & Comment.find_by_article_id(id2)) == Comment.find_by_article_id(id1)
 end
 
 Given /^the blog is set up for non-admin$/ do
