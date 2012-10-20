@@ -106,7 +106,7 @@ Rails.application.routes.draw do
   end
 	
 	# Merging
-	match 'admin/content/merge', :to => 'admin/content#merge'
+	match '/admin/content/merge', :to => 'admin/content#merge'
 
   # Admin/XController
   %w{advanced cache categories comments content profiles feedback general pages
